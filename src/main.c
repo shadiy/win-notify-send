@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 
 #include <windows.h>
 
@@ -110,17 +109,17 @@ int main(int argc, const char *argv[]) {
   struct argparse argparse;
   argparse_init(&argparse, options, usages, 0);
   argparse_describe(
-      &argparse, "\nnotify-send - a program to send desktop notifications",
-      "\nWith notify-send you can send desktop notifications to the user via a "
-      "\nnotification daemon from the command line. These notifications can be "
-      "\nused to inform the user about an event or display some form of "
-      "\ninformation without getting in the users way");
+      &argparse, "\nwin-notify-send - a program to send desktop notifications",
+      "\nWith win-notify-send you can send desktop notifications to the user "
+      "\nvia a command line.");
   argc = argparse_parse(&argparse, argc, argv);
 
   if (argc == 1) {
     body = _strdup(argv[0]);
   } else {
-    printf("ERROR: Notification body not defined");
+    printf(
+        "\nERROR: Body not defined. Please add one positonal argument for the "
+        "\nbody (ex. win-notify-send \"Notification Body\" -a \"a cool app\")");
   }
 
   create_window();
